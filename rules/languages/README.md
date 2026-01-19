@@ -9,7 +9,7 @@ This directory contains language-specific implementations of the coding rules de
 | [JavaScript/TypeScript](javascript/) | Complete | Full implementations with examples |
 | [Python](python/) | Placeholder | TODO checklists for future implementation |
 | [Go](go/) | Placeholder | TODO checklists for future implementation |
-| [Rust](rust/) | Placeholder | TODO checklists for future implementation |
+| [Rust](rust/) | Complete | Full implementations with examples |
 
 ## File Structure
 
