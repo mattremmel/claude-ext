@@ -1,8 +1,10 @@
 # Build and Fix
 
-Incrementally fix TypeScript and build errors:
+Incrementally fix build and type errors:
 
-1. Run build: npm run build or pnpm build
+1. Detect project type and run appropriate build command:
+   - Look for package.json, Cargo.toml, go.mod, pyproject.toml, pom.xml, etc.
+   - Run the project's build command
 
 2. Parse error output:
    - Group by file

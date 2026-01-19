@@ -2,9 +2,11 @@
 
 Analyze test coverage and generate missing tests:
 
-1. Run tests with coverage: npm test --coverage or pnpm test --coverage
+1. Detect project type and run tests with coverage:
+   - Look for package.json, Cargo.toml, go.mod, pyproject.toml, etc.
+   - Run the project's test command with coverage enabled
 
-2. Analyze coverage report (coverage/coverage-summary.json)
+2. Analyze coverage report (format varies by language/tooling)
 
 3. Identify files below 80% coverage threshold
 
@@ -23,5 +25,5 @@ Analyze test coverage and generate missing tests:
 Focus on:
 - Happy path scenarios
 - Error handling
-- Edge cases (null, undefined, empty)
+- Edge cases (null, undefined, empty, zero values)
 - Boundary conditions

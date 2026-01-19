@@ -8,7 +8,7 @@ This command invokes the **tdd-guide** agent to enforce test-driven development 
 
 ## What This Command Does
 
-1. **Scaffold Interfaces** - Define types/interfaces first
+1. **Scaffold Interfaces** - Define types/interfaces/structs first
 2. **Generate Tests First** - Write failing tests (RED)
 3. **Implement Minimal Code** - Write just enough to pass (GREEN)
 4. **Refactor** - Improve code while keeping tests green (REFACTOR)
@@ -27,13 +27,14 @@ Use `/tdd` when:
 
 The tdd-guide agent will:
 
-1. **Define interfaces** for inputs/outputs
-2. **Write tests that will FAIL** (because code doesn't exist yet)
-3. **Run tests** and verify they fail for the right reason
-4. **Write minimal implementation** to make tests pass
-5. **Run tests** and verify they pass
-6. **Refactor** code while keeping tests green
-7. **Check coverage** and add more tests if below 80%
+1. **Detect project language** from config files (package.json, Cargo.toml, go.mod, etc.)
+2. **Define interfaces** for inputs/outputs in the project's language
+3. **Write tests that will FAIL** (because code doesn't exist yet)
+4. **Run tests** using the project's test runner and verify they fail for the right reason
+5. **Write minimal implementation** to make tests pass
+6. **Run tests** and verify they pass
+7. **Refactor** code while keeping tests green
+8. **Check coverage** and add more tests if below 80%
 
 ## TDD Cycle
 
@@ -47,6 +48,9 @@ REPEAT:   Next feature/scenario
 ```
 
 ## Example Usage
+
+> Note: This example uses TypeScript, but the TDD workflow applies to all languages.
+> The agent will use your project's language and test framework.
 
 ```
 User: /tdd I need a function to calculate market liquidity score
@@ -124,8 +128,7 @@ describe('calculateLiquidityScore', () => {
 ## Step 3: Run Tests - Verify FAIL
 
 ```bash
-npm test lib/liquidity.test.ts
-
+# Run project's test command
 FAIL lib/liquidity.test.ts
   ✕ should return high score for liquid market (2 ms)
     Error: Not implemented
@@ -169,8 +172,7 @@ export function calculateLiquidityScore(market: MarketData): number {
 ## Step 5: Run Tests - Verify PASS
 
 ```bash
-npm test lib/liquidity.test.ts
-
+# Run project's test command
 PASS lib/liquidity.test.ts
   ✓ should return high score for liquid market (3 ms)
   ✓ should return low score for illiquid market (2 ms)
@@ -226,8 +228,7 @@ export function calculateLiquidityScore(market: MarketData): number {
 ## Step 7: Verify Tests Still Pass
 
 ```bash
-npm test lib/liquidity.test.ts
-
+# Run project's test command
 PASS lib/liquidity.test.ts
   ✓ should return high score for liquid market (3 ms)
   ✓ should return low score for illiquid market (2 ms)
@@ -241,8 +242,7 @@ PASS lib/liquidity.test.ts
 ## Step 8: Check Coverage
 
 ```bash
-npm test -- --coverage lib/liquidity.test.ts
-
+# Run project's test command with coverage
 File           | % Stmts | % Branch | % Funcs | % Lines
 ---------------|---------|----------|---------|--------
 liquidity.ts   |   100   |   100    |   100   |   100
@@ -275,7 +275,7 @@ Coverage: 100% ✅ (Target: 80%)
 
 **Unit Tests** (Function-level):
 - Happy path scenarios
-- Edge cases (empty, null, max values)
+- Edge cases (empty, null, zero, max values)
 - Error conditions
 - Boundary values
 
@@ -283,7 +283,7 @@ Coverage: 100% ✅ (Target: 80%)
 - API endpoints
 - Database operations
 - External service calls
-- React components with hooks
+- Components with state/side effects
 
 **E2E Tests** (use `/e2e` command):
 - Critical user flows
