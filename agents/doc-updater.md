@@ -93,6 +93,7 @@ Links to other codemaps that interact with this area
 ### 2. Update Documentation Files
 ```
 Files to update:
+- ARCHITECTURE.md - System architecture, design decisions
 - README.md - Project overview, setup instructions
 - docs/GUIDES/*.md - Feature guides, tutorials
 - Package manifests - Descriptions, scripts docs
@@ -242,8 +243,9 @@ Before committing documentation:
 - New major feature added
 - API routes/endpoints changed
 - Dependencies added/removed
-- Architecture significantly changed
+- Architecture significantly changed (update ARCHITECTURE.md)
 - Setup process modified
+- New components or services added (update ARCHITECTURE.md)
 
 **OPTIONALLY update when:**
 - Minor bug fixes

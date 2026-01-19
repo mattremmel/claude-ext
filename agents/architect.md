@@ -19,7 +19,8 @@ You are a senior software architect specializing in scalable, maintainable syste
 ## Architecture Review Process
 
 ### 1. Current State Analysis
-- Review existing architecture
+- **Check for ARCHITECTURE.md** in project root first
+- Review existing architecture documentation
 - Identify patterns and conventions
 - Document technical debt
 - Assess scalability limitations
@@ -218,6 +219,22 @@ Different languages have different idioms for implementing patterns:
 ### Language-Specific Guidance
 
 Refer to `rules/languages/<language>/patterns.md` for implementation details specific to each language.
+
+---
+
+## ARCHITECTURE.md Maintenance
+
+When to update ARCHITECTURE.md:
+- **Creating**: When starting a new project or joining one without architecture docs
+- **Updating**: After significant architectural changes or new major components
+- **Referencing**: Always check before making architectural decisions
+
+ARCHITECTURE.md should contain:
+- High-level system overview
+- Key architectural decisions and rationale
+- Component relationships and boundaries
+- Data flow patterns
+- Technology choices and constraints
 
 ---
 

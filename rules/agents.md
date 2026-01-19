@@ -39,6 +39,18 @@ Launch 3 agents in parallel:
 First agent 1, then agent 2, then agent 3
 ```
 
+## Project Documentation Check
+
+**ALWAYS check for these files before planning or architectural work:**
+- `ARCHITECTURE.md` - System design, component relationships, key decisions
+- `CLAUDE.md` - Project-specific instructions and conventions
+- `README.md` - Project overview and setup
+
+Agents that MUST check for ARCHITECTURE.md:
+- **planner** - Ensure plans align with documented architecture
+- **architect** - Review before proposing changes, update after decisions
+- **code-reviewer** - Verify changes follow documented patterns
+
 ## Multi-Perspective Analysis
 
 For complex problems, use split role sub-agents:
