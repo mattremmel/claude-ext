@@ -85,8 +85,7 @@ For each design decision, document:
 ### Frontend Patterns
 - **Component Composition**: Build complex UI from simple components
 - **Container/Presenter**: Separate data logic from presentation
-- **Custom Hooks**: Reusable stateful logic
-- **Context for Global State**: Avoid prop drilling
+- **State Management**: Centralized or distributed state handling
 - **Code Splitting**: Lazy load routes and heavy components
 
 ### Backend Patterns
@@ -100,7 +99,7 @@ For each design decision, document:
 - **Normalized Database**: Reduce redundancy
 - **Denormalized for Read Performance**: Optimize queries
 - **Event Sourcing**: Audit trail and replayability
-- **Caching Layers**: Redis, CDN
+- **Caching Layers**: In-memory, distributed, CDN
 - **Eventual Consistency**: For distributed systems
 
 ## Architecture Decision Records (ADRs)
@@ -108,37 +107,33 @@ For each design decision, document:
 For significant architectural decisions, create ADRs:
 
 ```markdown
-# ADR-001: Use Redis for Semantic Search Vector Storage
+# ADR-001: [Title of Decision]
 
 ## Context
-Need to store and query 1536-dimensional embeddings for semantic market search.
+[What is the background and why is this decision needed?]
 
 ## Decision
-Use Redis Stack with vector search capability.
+[What is the decision that was made?]
 
 ## Consequences
 
 ### Positive
-- Fast vector similarity search (<10ms)
-- Built-in KNN algorithm
-- Simple deployment
-- Good performance up to 100K vectors
+- [Benefit 1]
+- [Benefit 2]
 
 ### Negative
-- In-memory storage (expensive for large datasets)
-- Single point of failure without clustering
-- Limited to cosine similarity
+- [Drawback 1]
+- [Drawback 2]
 
 ### Alternatives Considered
-- **PostgreSQL pgvector**: Slower, but persistent storage
-- **Pinecone**: Managed service, higher cost
-- **Weaviate**: More features, more complex setup
+- **Option A**: Description, pros/cons
+- **Option B**: Description, pros/cons
 
 ## Status
-Accepted
+Proposed / Accepted / Deprecated / Superseded
 
 ## Date
-2025-01-15
+YYYY-MM-DD
 ```
 
 ## System Design Checklist
@@ -183,29 +178,47 @@ Watch for these architectural anti-patterns:
 - **Tight Coupling**: Components too dependent
 - **God Object**: One class/component does everything
 
-## Project-Specific Architecture (Example)
+## Scalability Planning
 
-Example architecture for an AI-powered SaaS platform:
+When planning for growth:
 
-### Current Architecture
-- **Frontend**: Next.js 15 (Vercel/Cloud Run)
-- **Backend**: FastAPI or Express (Cloud Run/Railway)
-- **Database**: PostgreSQL (Supabase)
-- **Cache**: Redis (Upstash/Railway)
-- **AI**: Claude API with structured output
-- **Real-time**: Supabase subscriptions
+| Scale | Considerations |
+|-------|----------------|
+| 1K users | Single server, simple architecture |
+| 10K users | Add caching, optimize queries |
+| 100K users | Load balancing, read replicas |
+| 1M users | Microservices, distributed caching, CDN |
+| 10M users | Event-driven, multi-region, sharding |
 
-### Key Design Decisions
-1. **Hybrid Deployment**: Vercel (frontend) + Cloud Run (backend) for optimal performance
-2. **AI Integration**: Structured output with Pydantic/Zod for type safety
-3. **Real-time Updates**: Supabase subscriptions for live data
-4. **Immutable Patterns**: Spread operators for predictable state
-5. **Many Small Files**: High cohesion, low coupling
+## Technology Selection Criteria
 
-### Scalability Plan
-- **10K users**: Current architecture sufficient
-- **100K users**: Add Redis clustering, CDN for static assets
-- **1M users**: Microservices architecture, separate read/write databases
-- **10M users**: Event-driven architecture, distributed caching, multi-region
+When evaluating technologies:
+
+1. **Maturity**: Production-ready, stable API
+2. **Community**: Active development, good documentation
+3. **Fit**: Matches team skills, project requirements
+4. **Performance**: Meets non-functional requirements
+5. **Cost**: Licensing, infrastructure, maintenance
+6. **Lock-in**: Portability, open standards
+
+---
+
+## Language-Specific Architecture Patterns
+
+Different languages have different idioms for implementing patterns:
+
+| Pattern | JavaScript/TS | Python | Go | Rust |
+|---------|--------------|--------|-----|------|
+| Dependency Injection | Constructor injection | FastAPI Depends | Wire/interfaces | Trait objects |
+| Repository | Class + interface | ABC/Protocol | Interface | Trait |
+| State Management | Redux/Zustand | Dataclasses | Structs | Structs + impl |
+| Error Handling | Try/catch, Result types | Exceptions | Error returns | Result<T, E> |
+| Async | Promises, async/await | asyncio | Goroutines | async/await, tokio |
+
+### Language-Specific Guidance
+
+Refer to `rules/languages/<language>/patterns.md` for implementation details specific to each language.
+
+---
 
 **Remember**: Good architecture enables rapid development, easy maintenance, and confident scaling. The best architecture is simple, clear, and follows established patterns.

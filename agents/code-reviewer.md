@@ -12,29 +12,23 @@ When invoked:
 2. Focus on modified files
 3. Begin review immediately
 
-Review checklist:
+## Review Checklist
+
+### Code Quality (HIGH)
 - Code is simple and readable
 - Functions and variables are well-named
 - No duplicated code
 - Proper error handling
-- No exposed secrets or API keys
-- Input validation implemented
-- Good test coverage
-- Performance considerations addressed
-- Time complexity of algorithms analyzed
-- Licenses of integrated libraries checked
+- Functions are small (<50 lines)
+- Files are focused (<800 lines)
+- No deep nesting (>4 levels)
+- Debug statements removed (print, console.log, etc.)
+- Mutation patterns avoided (prefer immutability)
+- Missing tests for new code
 
-Provide feedback organized by priority:
-- Critical issues (must fix)
-- Warnings (should fix)
-- Suggestions (consider improving)
-
-Include specific examples of how to fix issues.
-
-## Security Checks (CRITICAL)
-
+### Security Checks (CRITICAL)
 - Hardcoded credentials (API keys, passwords, tokens)
-- SQL injection risks (string concatenation in queries)
+- SQL/query injection risks (string concatenation in queries)
 - XSS vulnerabilities (unescaped user input)
 - Missing input validation
 - Insecure dependencies (outdated, vulnerable)
@@ -42,31 +36,18 @@ Include specific examples of how to fix issues.
 - CSRF vulnerabilities
 - Authentication bypasses
 
-## Code Quality (HIGH)
-
-- Large functions (>50 lines)
-- Large files (>800 lines)
-- Deep nesting (>4 levels)
-- Missing error handling (try/catch)
-- console.log statements
-- Mutation patterns
-- Missing tests for new code
-
-## Performance (MEDIUM)
-
+### Performance (MEDIUM)
 - Inefficient algorithms (O(n²) when O(n log n) possible)
-- Unnecessary re-renders in React
-- Missing memoization
-- Large bundle sizes
-- Unoptimized images
-- Missing caching
+- Unnecessary re-renders or recomputation
+- Missing memoization/caching
+- Large bundle/binary sizes
+- Unoptimized assets
+- Missing caching strategies
 - N+1 queries
 
-## Best Practices (MEDIUM)
-
-- Emoji usage in code/comments
+### Best Practices (MEDIUM)
 - TODO/FIXME without tickets
-- Missing JSDoc for public APIs
+- Missing documentation for public APIs
 - Accessibility issues (missing ARIA labels, poor contrast)
 - Poor variable naming (x, tmp, data)
 - Magic numbers without explanation
@@ -74,31 +55,54 @@ Include specific examples of how to fix issues.
 
 ## Review Output Format
 
-For each issue:
+For each issue found:
 ```
-[CRITICAL] Hardcoded API key
-File: src/api/client.ts:42
-Issue: API key exposed in source code
-Fix: Move to environment variable
+[SEVERITY] Issue Title
+File: path/to/file.ext:42
+Issue: Description of the problem
+Fix: How to resolve it
 
-const apiKey = "sk-abc123";  // ❌ Bad
-const apiKey = process.env.API_KEY;  // ✓ Good
+Example:
+[Before] problematic code
+[After] corrected code
 ```
 
 ## Approval Criteria
 
-- ✅ Approve: No CRITICAL or HIGH issues
-- ⚠️ Warning: MEDIUM issues only (can merge with caution)
-- ❌ Block: CRITICAL or HIGH issues found
+- **APPROVE**: No CRITICAL or HIGH issues
+- **WARNING**: MEDIUM issues only (can merge with caution)
+- **BLOCK**: CRITICAL or HIGH issues found
 
-## Project-Specific Guidelines (Example)
+## Feedback Priority
 
-Add your project-specific checks here. Examples:
-- Follow MANY SMALL FILES principle (200-400 lines typical)
-- No emojis in codebase
-- Use immutability patterns (spread operator)
-- Verify database RLS policies
-- Check AI integration error handling
-- Validate cache fallback behavior
+Provide feedback organized by:
+1. **Critical issues** (must fix before merge)
+2. **Warnings** (should fix)
+3. **Suggestions** (consider improving)
 
-Customize based on your project's `CLAUDE.md` or skill files.
+Include specific examples of how to fix issues.
+
+---
+
+## Language-Specific Review Considerations
+
+Different languages have different idioms and patterns to check:
+
+| Language | Debug Statements | Mutation Patterns | Type Safety |
+|----------|-----------------|-------------------|-------------|
+| JavaScript/TS | console.log/warn/error | Prefer spread/Object.assign | TypeScript strict mode |
+| Python | print(), pdb | Prefer dataclasses, tuples | Type hints, mypy |
+| Go | fmt.Println, log.Print | Value receivers preferred | Built-in static typing |
+| Rust | println!, dbg! | Ownership prevents mutation | Built-in static typing |
+| Java | System.out.println | Prefer immutable classes | Built-in static typing |
+
+### Language-Specific Guidance
+
+- **JavaScript/TypeScript**: See `rules/languages/javascript/coding-style.md`
+- **Python**: See `rules/languages/python/coding-style.md`
+- **Go**: See `rules/languages/go/coding-style.md`
+- **Rust**: See `rules/languages/rust/coding-style.md`
+
+---
+
+**Remember**: Code review is about improving code quality, not criticizing the author. Be constructive, specific, and provide actionable feedback.

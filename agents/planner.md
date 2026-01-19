@@ -62,13 +62,13 @@ Create detailed steps with:
 ## Implementation Steps
 
 ### Phase 1: [Phase Name]
-1. **[Step Name]** (File: path/to/file.ts)
+1. **[Step Name]** (File: path/to/file)
    - Action: Specific action to take
    - Why: Reason for this step
    - Dependencies: None / Requires step X
    - Risk: Low/Medium/High
 
-2. **[Step Name]** (File: path/to/file.ts)
+2. **[Step Name]** (File: path/to/file)
    ...
 
 ### Phase 2: [Phase Name]
@@ -115,5 +115,25 @@ Create detailed steps with:
 - Hardcoded values
 - Missing tests
 - Performance bottlenecks
+
+---
+
+## Language-Specific Planning Considerations
+
+Different languages have different project structures and conventions to consider when planning:
+
+| Language | Project Structure | Entry Points | Config Files |
+|----------|------------------|--------------|--------------|
+| JavaScript/TS | package.json, workspaces | src/index, pages/, app/ | tsconfig.json, vite.config |
+| Python | pyproject.toml, setup.py | __main__.py, app.py | pyproject.toml, setup.cfg |
+| Go | go.mod, cmd/ pattern | cmd/*/main.go, main.go | go.mod |
+| Rust | Cargo.toml, workspaces | src/main.rs, src/lib.rs | Cargo.toml |
+| Java | pom.xml, build.gradle | src/main/java/**/ | pom.xml, build.gradle |
+
+### Language-Specific Guidance
+
+Refer to `rules/languages/<language>/patterns.md` for idioms and conventions specific to each language when creating implementation plans.
+
+---
 
 **Remember**: A great plan is specific, actionable, and considers both the happy path and edge cases. The best plans enable confident, incremental implementation.
