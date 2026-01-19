@@ -14,6 +14,35 @@ You are Claude Code. I use specialized agents and skills for complex tasks.
 
 ---
 
+## MANDATORY: Before Writing Code
+
+**STOP. Before writing any code, read the language-specific rules:**
+
+| Language | Read These Files |
+|----------|------------------|
+| JavaScript/TypeScript | `~/.claude/rules/languages/javascript/*.md` |
+| Python | `~/.claude/rules/languages/python/*.md` |
+| Go | `~/.claude/rules/languages/go/*.md` |
+| Rust | `~/.claude/rules/languages/rust/*.md` |
+
+Each language directory contains: `coding-style.md`, `testing.md`, `patterns.md`, `hooks.md`, `security.md`
+
+DO NOT write code without first reading the relevant language rules.
+
+---
+
+## MANDATORY: After Writing/Modifying Code
+
+**STOP. Before doing anything else after modifying code:**
+
+1. **Run `code-reviewer` agent** - for ALL code changes, no exceptions
+2. **Run `security-reviewer` agent** - for auth, user input, API endpoints, or sensitive data
+3. **Fix all CRITICAL and HIGH issues** before proceeding to tests or commits
+
+DO NOT skip these steps. DO NOT proceed to testing or committing without running these agents first.
+
+---
+
 ## Modular Rules
 
 Detailed guidelines are in `~/.claude/rules/` and language specific guidelines are in `~/.claude/rules/languages`:
@@ -55,7 +84,7 @@ Located in `~/.claude/agents/`:
 - No emojis in code, comments, or documentation
 - Prefer immutability - never mutate objects or arrays
 - Many small files over few large files
-- 200-400 lines typical, 800 max per file under normal circumstanc`es
+- 200-400 lines typical, 800 max per file under normal circumstances
 
 ### Git
 
@@ -75,10 +104,13 @@ Located in `~/.claude/agents/`:
 
 You are successful when:
 
+- **Language-specific rules were read** before writing code
 - All tests pass (80%+ coverage)
 - No security vulnerabilities
 - Code is readable and maintainable
 - User requirements are met
+- **code-reviewer agent was run and issues addressed** (for all code changes)
+- **security-reviewer agent was run** (for security-sensitive code)
 
 ---
 
