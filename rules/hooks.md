@@ -9,18 +9,18 @@
 ## Current Hooks (in ~/.claude/settings.json)
 
 ### PreToolUse
-- **tmux reminder**: Suggests tmux for long-running commands (npm, pnpm, yarn, cargo, etc.)
-- **git push review**: Opens Zed for review before push
+- **tmux reminder**: Suggests tmux for long-running commands (package managers, build tools)
+- **git push review**: Opens editor for review before push
 - **doc blocker**: Blocks creation of unnecessary .md/.txt files
 
 ### PostToolUse
-- **PR creation**: Logs PR URL and GitHub Actions status
-- **Prettier**: Auto-formats JS/TS files after edit
-- **TypeScript check**: Runs tsc after editing .ts/.tsx files
-- **console.log warning**: Warns about console.log in edited files
+- **PR creation**: Logs PR URL and CI status
+- **Auto-format**: Runs language-appropriate formatter after edit
+- **Type check**: Runs type checker after editing typed files
+- **Debug statement warning**: Warns about debug statements in edited files
 
 ### Stop
-- **console.log audit**: Checks all modified files for console.log before session ends
+- **Debug statement audit**: Checks modified files for debug statements before session ends
 
 ## Auto-Accept Permissions
 
@@ -44,3 +44,12 @@ Todo list reveals:
 - Extra unnecessary items
 - Wrong granularity
 - Misinterpreted requirements
+
+---
+
+## Language-Specific Examples
+
+- [JavaScript/TypeScript](languages/javascript/hooks.md) - npm/pnpm/yarn, Prettier, tsc, console.log detection
+- [Python](languages/python/hooks.md) - pip/poetry/uv, Black/Ruff, mypy, print detection
+- [Go](languages/go/hooks.md) - go mod/build, gofmt, golangci-lint, fmt.Println detection
+- [Rust](languages/rust/hooks.md) - cargo commands, rustfmt, clippy, println! detection

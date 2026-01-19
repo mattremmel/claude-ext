@@ -2,23 +2,7 @@
 
 ## Immutability (CRITICAL)
 
-ALWAYS create new objects, NEVER mutate:
-
-```javascript
-// WRONG: Mutation
-function updateUser(user, name) {
-  user.name = name  // MUTATION!
-  return user
-}
-
-// CORRECT: Immutability
-function updateUser(user, name) {
-  return {
-    ...user,
-    name
-  }
-}
-```
+ALWAYS create new objects, NEVER mutate. Return new instances with updated values instead of modifying in place.
 
 ## File Organization
 
@@ -31,31 +15,13 @@ MANY SMALL FILES > FEW LARGE FILES:
 ## Error Handling
 
 ALWAYS handle errors comprehensively:
-
-```typescript
-try {
-  const result = await riskyOperation()
-  return result
-} catch (error) {
-  console.error('Operation failed:', error)
-  throw new Error('Detailed user-friendly message')
-}
-```
+- Wrap risky operations in try-catch (or language equivalent)
+- Log errors with context
+- Throw user-friendly error messages
 
 ## Input Validation
 
-ALWAYS validate user input:
-
-```typescript
-import { z } from 'zod'
-
-const schema = z.object({
-  email: z.string().email(),
-  age: z.number().int().min(0).max(150)
-})
-
-const validated = schema.parse(input)
-```
+ALWAYS validate user input using schema validation libraries appropriate to your language.
 
 ## Code Quality Checklist
 
@@ -65,6 +31,15 @@ Before marking work complete:
 - [ ] Files are focused (<800 lines)
 - [ ] No deep nesting (>4 levels)
 - [ ] Proper error handling
-- [ ] No console.log statements
+- [ ] No debug statements (console.log, print, etc.)
 - [ ] No hardcoded values
 - [ ] No mutation (immutable patterns used)
+
+---
+
+## Language-Specific Examples
+
+- [JavaScript/TypeScript](languages/javascript/coding-style.md) - Spread operators, Zod validation, async/await patterns
+- [Python](languages/python/coding-style.md) - Dataclasses, Pydantic, exception handling
+- [Go](languages/go/coding-style.md) - Value receivers, error returns, validator
+- [Rust](languages/rust/coding-style.md) - Ownership, Result types, thiserror

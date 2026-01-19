@@ -5,7 +5,7 @@
 Test Types (ALL required):
 1. **Unit Tests** - Individual functions, utilities, components
 2. **Integration Tests** - API endpoints, database operations
-3. **E2E Tests** - Critical user flows (Playwright)
+3. **E2E Tests** - Critical user flows
 
 ## Test-Driven Development
 
@@ -27,4 +27,13 @@ MANDATORY workflow:
 ## Agent Support
 
 - **tdd-guide** - Use PROACTIVELY for new features, enforces write-tests-first
-- **e2e-runner** - Playwright E2E testing specialist
+- **e2e-runner** - E2E testing specialist
+
+---
+
+## Language-Specific Examples
+
+- [JavaScript/TypeScript](languages/javascript/testing.md) - Jest/Vitest, React Testing Library, Playwright
+- [Python](languages/python/testing.md) - pytest, unittest.mock, Playwright Python
+- [Go](languages/go/testing.md) - testing package, table-driven tests, interface mocking
+- [Rust](languages/rust/testing.md) - #[test], mockall, cargo-tarpaulin

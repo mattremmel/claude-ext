@@ -14,15 +14,15 @@ Before ANY commit:
 
 ## Secret Management
 
-```typescript
+```text
 // NEVER: Hardcoded secrets
-const apiKey = "sk-proj-xxxxx"
+apiKey = "sk-proj-xxxxx"
 
 // ALWAYS: Environment variables
-const apiKey = process.env.OPENAI_API_KEY
+apiKey = getEnvVar("OPENAI_API_KEY")
 
 if (!apiKey) {
-  throw new Error('OPENAI_API_KEY not configured')
+  throw Error("OPENAI_API_KEY not configured")
 }
 ```
 
@@ -34,3 +34,12 @@ If security issue found:
 3. Fix CRITICAL issues before continuing
 4. Rotate any exposed secrets
 5. Review entire codebase for similar issues
+
+---
+
+## Language-Specific Examples
+
+- [JavaScript/TypeScript](languages/javascript/security.md) - process.env, dotenv, DOMPurify, Prisma parameterized queries
+- [Python](languages/python/security.md) - os.environ, python-dotenv, SQLAlchemy, Jinja2 escaping
+- [Go](languages/go/security.md) - os.Getenv, Viper, database/sql placeholders, html/template
+- [Rust](languages/rust/security.md) - std::env, dotenvy, sqlx macros, askama escaping
